@@ -43,12 +43,14 @@ class DetailWisataMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val long = intent.getDoubleExtra("long",0.0)
         val lat = intent.getDoubleExtra("lat",0.0)
+        val namaWisata = intent.getStringExtra("namaWisata")
+        val deskripsiWisata = intent.getStringExtra("deskripsiWisata")
 
-        Toast.makeText(this,"$long $lat",Toast.LENGTH_SHORT).show()
 
+        binding.tvDeskripsi.text = deskripsiWisata
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(long, lat)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        val sydney = LatLng(lat, long)
+        mMap.addMarker(MarkerOptions().position(sydney).title(namaWisata))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,14F))
     }
 }

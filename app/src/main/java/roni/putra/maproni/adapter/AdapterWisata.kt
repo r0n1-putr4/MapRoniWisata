@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import roni.putra.maproni.DetailWisataMapsActivity
@@ -41,6 +40,7 @@ class AdapterWisata(
             val intentDetialWisata = Intent(holder.itemView.context,DetailWisataMapsActivity::class.java)
             intentDetialWisata.putExtra("gambar",currentItem.gambarWisata)
             intentDetialWisata.putExtra("namaWisata",currentItem.namaLokasiWisata)
+            intentDetialWisata.putExtra("deskripsiWisata",currentItem.deskripsiWisata)
             intentDetialWisata.putExtra("alamat",currentItem.alamatWisata)
             intentDetialWisata.putExtra("long",currentItem.longWisata)
             intentDetialWisata.putExtra("lat",currentItem.latWisata)
