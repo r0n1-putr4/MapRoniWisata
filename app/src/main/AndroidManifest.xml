@@ -33,6 +33,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".DetailWisataMapsActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ListWisataActivity"
             android:exported="true">

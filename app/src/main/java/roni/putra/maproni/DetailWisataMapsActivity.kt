@@ -2,6 +2,7 @@ package roni.putra.maproni
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -40,9 +41,14 @@ class DetailWisataMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        val long = intent.getDoubleExtra("long",0.0)
+        val lat = intent.getDoubleExtra("lat",0.0)
+
+        Toast.makeText(this,"$long $lat",Toast.LENGTH_SHORT).show()
+
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
+        val sydney = LatLng(long, lat)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,14F))
     }
 }

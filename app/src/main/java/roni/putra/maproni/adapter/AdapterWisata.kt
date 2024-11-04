@@ -1,5 +1,6 @@
 package roni.putra.maproni.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import roni.putra.maproni.DetailWisataMapsActivity
 import roni.putra.maproni.R
 import roni.putra.maproni.model.ModelWisata
 
@@ -35,7 +37,15 @@ class AdapterWisata(
         holder.tvNamaTempatWisata.text = currentItem.namaLokasiWisata
         holder.tvAlamat.text = currentItem.alamatWisata
         holder.cardWisata.setOnClickListener {
-            Toast.makeText(holder.itemView.context,"{${currentItem.latWisata}}",Toast.LENGTH_SHORT).show()
+           // Toast.makeText(holder.itemView.context,"${currentItem.longWisata}",Toast.LENGTH_SHORT).show()
+            val intentDetialWisata = Intent(holder.itemView.context,DetailWisataMapsActivity::class.java)
+            intentDetialWisata.putExtra("gambar",currentItem.gambarWisata)
+            intentDetialWisata.putExtra("namaWisata",currentItem.namaLokasiWisata)
+            intentDetialWisata.putExtra("alamat",currentItem.alamatWisata)
+            intentDetialWisata.putExtra("long",currentItem.longWisata)
+            intentDetialWisata.putExtra("lat",currentItem.latWisata)
+            holder.itemView.context.startActivity(intentDetialWisata)
+
         }
     }
 
