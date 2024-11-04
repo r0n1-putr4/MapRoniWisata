@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Map Roni</string>
+    <string name="title_activity_detail_wisata_maps">DetailWisataMapsActivity</string>
+</resources>
