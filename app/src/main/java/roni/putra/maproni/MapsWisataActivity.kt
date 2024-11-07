@@ -50,7 +50,7 @@ class MapsWisataActivity : AppCompatActivity(), OnMapReadyCallback {
         // Add a marker in Sydney and move the camera
         val koordinat = LatLng(latWisata,longWisata)
 
-        //panggil method style map
+        //panggil method style map//
         setStylesMap(mMap)
 
         mMap.addMarker(MarkerOptions().position(koordinat).title(namaLokasiWisata))
