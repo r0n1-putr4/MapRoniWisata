@@ -1,27 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="5dp"
+    android:padding="7dp"
     tools:context=".DetailWisataMapsActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:importantForAccessibility="no"
-        android:scaleType="centerCrop"
-        android:src="@drawable/destinasi_wisata1" />
-
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tvNamaLokasiWisata"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:text="Nama Wisata"
+        android:text="Nama Lokasi Wisata"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imgWisata"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/destinasi_wisata1" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -37,19 +40,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Deskripsi"
-                android:layout_marginBottom="10dp"
-                android:textSize="15sp"/>
+                android:text="Deskripsi Lokasi Wisata" />
+
+            <Button
+                android:id="@+id/btnLokasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Lokasi Wisata" />
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/map"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
-
+                android:layout_height="240dp"
+                android:layout_marginTop="10dp" />
         </LinearLayout>
 
     </ScrollView>
 
 </LinearLayout>
-

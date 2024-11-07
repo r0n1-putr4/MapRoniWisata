@@ -1,8 +1,11 @@
 package roni.putra.maproni
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -17,11 +20,23 @@ class DetailWisataMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityDetailWisataMapsBinding
 
+    private lateinit var tvNamaLokasiWisata: TextView
+    private lateinit var imgWisata: ImageView
+    private lateinit var tvDeskripsi: TextView
+    private lateinit var btnLokasi: Button
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityDetailWisataMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        tvNamaLokasiWisata = findViewById(R.id.tvNamaLokasiWisata)
+        imgWisata = findViewById(R.id.imgWisata)
+        tvDeskripsi = findViewById(R.id.tvDeskripsi)
+        btnLokasi = findViewById(R.id.btnLokasi)
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
@@ -41,16 +56,33 @@ class DetailWisataMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        val long = intent.getDoubleExtra("long",0.0)
-        val lat = intent.getDoubleExtra("lat",0.0)
-        val namaWisata = intent.getStringExtra("namaWisata")
+        //mengambil data dari intent
+        val namaLokasiWisata = intent.getStringExtra("namaLokasiWisata")
+        val gambarWisata = intent.getIntExtra("gambarWisata",0)
         val deskripsiWisata = intent.getStringExtra("deskripsiWisata")
+        val latWisata = intent.getDoubleExtra("latWisata", 0.0)
+        val longWisata = intent.getDoubleExtra("longWisata",0.0)
 
+        tvNamaLokasiWisata.text = namaLokasiWisata
+        imgWisata.setImageResource(gambarWisata)
+        tvDeskripsi.text = deskripsiWisata
 
-        binding.tvDeskripsi.text = deskripsiWisata
+        //event click button Map Wisata
+        btnLokasi.setOnClickListener {
+            val intentMapWisata = Intent(this,MapsWisataActivity::class.java)
+            //kirim lat dan long
+            intentMapWisata.putExtra("latWisata",latWisata)
+            intentMapWisata.putExtra("longWisata",longWisata)
+            intentMapWisata.putExtra("namaLokasiWisata",namaLokasiWisata)
+            startActivity(intentMapWisata)
+        }
+
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(lat, long)
-        mMap.addMarker(MarkerOptions().position(sydney).title(namaWisata))
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,14F))
+        val koordinatWisata = LatLng(-latWisata, longWisata)
+        mMap.addMarker(MarkerOptions().position(koordinatWisata).title(namaLokasiWisata))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(koordinatWisata,14F))
+
     }
+
+
 }

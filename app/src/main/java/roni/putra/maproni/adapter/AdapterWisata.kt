@@ -1,5 +1,6 @@
 package roni.putra.maproni.adapter
 
+import android.app.PendingIntent
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.app.PendingIntentCompat.getActivity
 import androidx.recyclerview.widget.RecyclerView
 import roni.putra.maproni.DetailWisataMapsActivity
 import roni.putra.maproni.R
@@ -35,18 +37,19 @@ class AdapterWisata(
         holder.imgWisata.setImageResource(currentItem.gambarWisata)
         holder.tvNamaTempatWisata.text = currentItem.namaLokasiWisata
         holder.tvAlamat.text = currentItem.alamatWisata
+        //event klik pada cardview
         holder.cardWisata.setOnClickListener {
-           // Toast.makeText(holder.itemView.context,"${currentItem.longWisata}",Toast.LENGTH_SHORT).show()
-            val intentDetialWisata = Intent(holder.itemView.context,DetailWisataMapsActivity::class.java)
-            intentDetialWisata.putExtra("gambar",currentItem.gambarWisata)
-            intentDetialWisata.putExtra("namaWisata",currentItem.namaLokasiWisata)
-            intentDetialWisata.putExtra("deskripsiWisata",currentItem.deskripsiWisata)
-            intentDetialWisata.putExtra("alamat",currentItem.alamatWisata)
-            intentDetialWisata.putExtra("long",currentItem.longWisata)
-            intentDetialWisata.putExtra("lat",currentItem.latWisata)
-            holder.itemView.context.startActivity(intentDetialWisata)
-
+            val intentDetailWisata = Intent(holder.itemView.context,DetailWisataMapsActivity::class.java)
+            //kirim data list item wisata ke DetailWisataMapsActivity//
+            intentDetailWisata.putExtra("namaLokasiWisata",currentItem.namaLokasiWisata)
+            intentDetailWisata.putExtra("gambarWisata",currentItem.gambarWisata)
+            intentDetailWisata.putExtra("deskripsiWisata",currentItem.deskripsiWisata)
+            intentDetailWisata.putExtra("latWisata",currentItem.latWisata)
+            intentDetailWisata.putExtra("longWisata",currentItem.longWisata)
+            //menjalankan intent startActivity
+            holder.itemView.context.startActivity(intentDetailWisata)
         }
+
     }
 
     override fun getItemCount(): Int {
